@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../index.css";
 import Header from './Header.js'
 import Main from './Main.js'
@@ -14,7 +14,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpened] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpened] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpened] = React.useState(false);
-  //const [isClosePopup, setIsClosePopup] = React.useState(false)
+
 
   const handleEditAvatarClick = () => {
     //document.querySelector('.popup_edit-avatar').classList.add('popup_opened');
@@ -37,10 +37,14 @@ function App() {
     setIsAddPlacePopupOpened(false)
   }
 
+  useEffect(() => {
+    console.log('render');
+  })
+
   return (
     
       <body className ="page">
-        <div className ="content">
+        <div  className ="content">
           
             <Header />
             <Main
@@ -136,11 +140,9 @@ function App() {
                 title="Вы уверены?"
                 isOpen={''}
               />
-
           
         </div>
        
-
 
         <div class="popup popup_deleteCard" id="popupDeleteCard">
           <div class="popup__container">
@@ -160,33 +162,7 @@ function App() {
 
 
         <ImagePopup />
-        <template id="template-card" class="card-template">
-          <li class="elements__card-content">
-            <img
-              src="<%=require('./images/image.jpg')%>"
-              alt=""
-              class="elements__picture"
-            />
-            <button
-              type="button"
-              title="Кнопка удаления карточки"
-              class="elements__button-delete"
-            ></button>
-            <div class="elements__description">
-              <div class="elements__container">
-                <h2 class="elements__title"></h2>
-                <div class="elements__like-container">
-                  <button
-                    type="button"
-                    title="Кнопка лайка картинки"
-                    class="elements__button-like"
-                  ></button>
-                  <span class="elements__likes-counter">0</span>
-                </div>
-              </div>
-            </div>
-          </li>
-        </template>
+        
       </body>
     
   );
