@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <body className="page">
+    <div className="page">
       <div className="content">
         <Header />
         <Main
@@ -60,8 +60,8 @@ function App() {
             type="text"
             id="user-name"
             placeholder="Как вас зовут?"
-            minlength="2"
-            maxlength="40"
+            minLength="2"
+            maxLength="40"
             name="name"
             required
           />
@@ -71,16 +71,16 @@ function App() {
             type="text"
             id="description"
             placeholder="Дополнитерьная информация"
-            minlength="2"
-            maxlength="200"
+            minLength="2"
+            maxLength="200"
             name="about"
             required
           />
           <span className="popup__input-error description-error"></span>
         </fieldset>
         <button type="submit" className="popup__submit" value="delete">
-                Сохранить
-              </button>
+          Сохранить
+        </button>
       </PopupWithForm>
       <PopupWithForm
         name="popup_addCard"
@@ -93,8 +93,8 @@ function App() {
             id="card-description"
             type="text"
             placeholder="Название"
-            minlength="2"
-            maxlength="30"
+            minLength="2"
+            maxLength="30"
             name="newPlace"
             required
           />
@@ -104,16 +104,16 @@ function App() {
             id="picture-link"
             type="url"
             placeholder="Ссылка на картинку"
-            minlength="1"
-            maxlength="400"
+            minLength="1"
+            maxLength="400"
             name="pictureLink"
             required
           />
           <span className="popup__input-error picture-link-error"></span>
         </fieldset>
         <button type="submit" className="popup__submit" value="delete">
-                Создать
-              </button>
+          Создать
+        </button>
       </PopupWithForm>
       <PopupWithForm
         name="popup_edit-avatar"
@@ -126,32 +126,30 @@ function App() {
             id="avatar-link"
             type="url"
             placeholder="Ссылка на аватар пользователя"
-            minlength="1"
-            maxlength="400"
+            minLength="1"
+            maxLength="400"
             name="avatarLink"
             required
           />
           <span className="popup__input-error avatar-link-error"></span>
         </fieldset>
         <button type="submit" className="popup__submit" value="delete">
-                Сохранить
-              </button>
+          Сохранить
+        </button>
       </PopupWithForm>
       <PopupWithForm
         name="popup_deleteCard"
         title="Вы уверены?"
         isOpen={""}
-        onClose={closeAllPopups}
-      >
+        onClose={closeAllPopups}>
         <button type="submit" className="popup__submit" value="delete">
-                Да
-              </button>
-        </PopupWithForm>
-        
+          Да
+        </button>
+      </PopupWithForm>
+
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-    </body>
+    </div>
   );
 }
 
 export default App;
- 

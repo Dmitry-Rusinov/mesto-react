@@ -14,21 +14,12 @@ export default function Main({
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
-  }, [userName, userDescription, userAvatar]);
-
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data);
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cardsData]) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        setCards(cardsData);
       })
       .catch((err) => console.log(`Ошибка: ${err}`));
   }, []);
@@ -66,7 +57,9 @@ export default function Main({
         <ul className="elements__card">
           {cards.map((data) => {
             return (
-              <Card key={cards._id} card={data} onCardClick={onCardClick} />
+              <li key={data._id}>
+                <Card card={data} onCardClick={onCardClick} />
+              </li>
             );
           })}
         </ul>
