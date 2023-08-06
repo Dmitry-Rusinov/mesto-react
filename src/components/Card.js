@@ -1,10 +1,15 @@
-export default function Card({card}) {
-
+export default function Card({card, onCardClick}) {
+  
+  function handleClick() {
+    onCardClick(card);
+  } 
+  
   return (
           <li class="elements__card-content">
             <img
               src={card.link}
               alt={card.name}
+              onClick={handleClick}
               className="elements__picture"
             />
             <button

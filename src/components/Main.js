@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
 
-export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
+export default function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  onCardClick,
+}) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
@@ -30,7 +35,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
 
   return (
     <main>
-      <section class="profile">
+      <section className="profile">
         <button
           type="button"
           onClick={onEditAvatar}
@@ -61,10 +66,9 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
         <ul className="elements__card">
           {cards.map((data) => {
             return (
-              <Card key={cards._id} card = {data}/>
-              
-            
-          )})}
+              <Card key={cards._id} card={data} onCardClick={onCardClick} />
+            );
+          })}
         </ul>
       </section>
     </main>
