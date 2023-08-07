@@ -100,7 +100,7 @@ function App() {
           />
           <span className="popup__input-error card-description-error"></span>
           <input
-            class="popup__input"
+            className="popup__input"
             id="picture-link"
             type="url"
             placeholder="Ссылка на картинку"
