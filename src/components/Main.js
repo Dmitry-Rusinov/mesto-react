@@ -58,7 +58,7 @@ export default function Main({
           {cards.map((data) => {
             return (
               <li key={data._id}>
-                <Card card={data} onCardClick={onCardClick} />
+                <Card card={ data } onCardClick={onCardClick} />
               </li>
             );
           })}
