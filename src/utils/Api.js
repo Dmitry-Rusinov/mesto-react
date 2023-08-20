@@ -33,7 +33,7 @@ class Api {
     }).then(this._checkQueryResult);
   }
 
-  sendUserInfo(data) {
+  setUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
