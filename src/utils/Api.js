@@ -23,14 +23,15 @@ class Api {
     }).then(this._checkQueryResult);
   }
 
-  updateAvatar(data) {
+  setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatarLink,
-      }),
-    }).then(this._checkQueryResult);
+        avatar: data.avatar,
+          })
+        })
+        .then(this._checkQueryResult)
   }
 
   setUserInfo(data) {

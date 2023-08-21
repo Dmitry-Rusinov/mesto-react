@@ -11,23 +11,8 @@ export default function Main({
   onCardLike,
   cards
 }) {
-  /*const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");*/
-  //const [cards, setCards] = useState([]);
+
   const currentUser = useContext(CurrentUserContext);
-
-
- /* useEffect(() => {
-    Promise.all([/*api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        /*setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setCards(cardsData);
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
-  }, []);*/
 
   return (
     <main>

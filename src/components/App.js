@@ -8,6 +8,7 @@ import PopupWithForm from "./PopupWithForm";
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpened] =
@@ -70,13 +71,27 @@ function App() {
   };
 
   const handleUpdateUser = (userData) => {
-    api.setUserInfo(userData)
-    .then((data) => {
-      setCurrentUser(data);
-      closeAllPopups()
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`));
-  }
+    api
+      .setUserInfo(userData)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+  };
+
+  const handleUpdateAvatar = (userAvatar) => {
+    console.log(userAvatar);
+    api
+      .setUserAvatar(userAvatar)
+      .then((data) => {
+        console.log(data)
+        setCurrentUser(data);
+        closeAllPopups();
+        
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -132,28 +147,11 @@ function App() {
             Создать
           </button>
         </PopupWithForm>
-        <PopupWithForm
-          name="popup_edit-avatar"
-          title="Обновить аватар"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}>
-          <fieldset className="popup__content">
-            <input
-              className="popup__input"
-              id="avatar-link"
-              type="url"
-              placeholder="Ссылка на аватар пользователя"
-              minLength="1"
-              maxLength="400"
-              name="avatarLink"
-              required
-            />
-            <span className="popup__input-error avatar-link-error"></span>
-          </fieldset>
-          <button type="submit" className="popup__submit" value="delete">
-            Сохранить
-          </button>
-        </PopupWithForm>
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+        />
         <PopupWithForm
           name="popup_deleteCard"
           title="Вы уверены?"
