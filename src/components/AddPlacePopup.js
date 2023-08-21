@@ -1,18 +1,22 @@
 import PopupWithForm from "./PopupWithForm";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-export default function AddPlacePopup({ isOpen, onClose, onAddCard}) {
+export default function AddPlacePopup({ isOpen, onClose, onAddCard }) {
+  const newPlaceRef = useRef();
+  const pictureLinkRef = useRef();
 
-const newPlaceRef = useRef();
-const pictureLinkRef = useRef();
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddCard({
+      name: newPlaceRef.current.value,
+      link: pictureLinkRef.current.value,
+    });
+  }
 
-function handleSubmit(e) {
-  e.preventDefault();
-  onAddCard({
-    name: newPlaceRef.current.value,
-    link: pictureLinkRef.current.value
-  })
-}
+  useEffect(() => {
+    newPlaceRef.current.value = "";
+    pictureLinkRef.current.value = "";
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -20,8 +24,7 @@ function handleSubmit(e) {
       title="Новое место"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}
-      >
+      onSubmit={handleSubmit}>
       <fieldset className="popup__content">
         <input
           className="popup__input"
