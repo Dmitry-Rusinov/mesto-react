@@ -45,13 +45,13 @@ class Api {
     }).then(this._checkQueryResult);
   }
 
-  sendUserCard(data) {
+  setUserCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.newPlace,
-        link: data.pictureLink,
+        name: data.name,
+        link: data.link,
       }),
     }).then(this._checkQueryResult);
   }
