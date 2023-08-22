@@ -21,7 +21,8 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       title="Обновить аватар"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      buttonText="Сохранить">
       <fieldset className="popup__content">
         <input
           className="popup__input"
@@ -36,9 +37,6 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         />
         <span className="popup__input-error avatar-link-error"></span>
       </fieldset>
-      <button type="submit" className="popup__submit" value="delete">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

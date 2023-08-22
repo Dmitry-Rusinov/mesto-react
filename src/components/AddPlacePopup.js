@@ -1,21 +1,29 @@
 import PopupWithForm from "./PopupWithForm";
-import { useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function AddPlacePopup({ isOpen, onClose, onAddCard }) {
-  const newPlaceRef = useRef();
-  const pictureLinkRef = useRef();
+  const [newPlace, setNewPlace] = useState("");
+  const [pictureLink, setPictureLink] = useState("");
+
+  function handleChangeNewPlace(e) {
+    setNewPlace(e.target.value);
+  }
+
+  function handleChangePictureLink(e) {
+    setPictureLink(e.target.value);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     onAddCard({
-      name: newPlaceRef.current.value,
-      link: pictureLinkRef.current.value,
+      name: newPlace,
+      link: pictureLink,
     });
   }
 
   useEffect(() => {
-    newPlaceRef.current.value = "";
-    pictureLinkRef.current.value = "";
+    setNewPlace("");
+    setPictureLink("");
   }, [isOpen]);
 
   return (
@@ -24,7 +32,8 @@ export default function AddPlacePopup({ isOpen, onClose, onAddCard }) {
       title="Новое место"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      buttonText="Создать">
       <fieldset className="popup__content">
         <input
           className="popup__input"
@@ -35,7 +44,8 @@ export default function AddPlacePopup({ isOpen, onClose, onAddCard }) {
           maxLength="30"
           name="newPlace"
           required
-          ref={newPlaceRef}
+          value={newPlace}
+          onChange={handleChangeNewPlace}
         />
         <span className="popup__input-error card-description-error"></span>
         <input
@@ -47,13 +57,11 @@ export default function AddPlacePopup({ isOpen, onClose, onAddCard }) {
           maxLength="400"
           name="pictureLink"
           required
-          ref={pictureLinkRef}
+          value={pictureLink}
+          onChange={handleChangePictureLink}
         />
         <span className="popup__input-error picture-link-error"></span>
       </fieldset>
-      <button type="submit" className="popup__submit" value="delete">
-        Создать
-      </button>
     </PopupWithForm>
   );
 }
